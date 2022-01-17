@@ -1,6 +1,6 @@
 import pytest
 
-from lib.fetch_input import fetch_product_sum, fetch_is_prod_imported
+from lib.fetch_input import fetch_product_sum, fetch_is_prod_imported, fetch_prod_price
 
 #normal prod str
 @pytest.fixture
@@ -36,3 +36,9 @@ class TestTaxCaculator:
         is_imported = fetch_is_prod_imported(prod_imported_inputs[2])
         assert is_imported == False
 
+    def test_fetch_prod_price(self, prod_inputs):
+        price = fetch_prod_price(prod_inputs[0])
+        assert price == 12.49
+
+        price = fetch_prod_price(prod_inputs[1])
+        assert price == 14.99
