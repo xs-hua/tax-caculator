@@ -19,6 +19,16 @@ def fetch_is_prod_imported(str):
     
     return is_imported
 
+def fetch_prod_price(str):
+    str_arr = str.split(" ")
+
+    try:
+        price = float(str_arr[len(str_arr) - 1])
+    except ValueError as e:
+        print(e)
+    
+    return price
+
 
 
 
