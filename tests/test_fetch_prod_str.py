@@ -28,7 +28,7 @@ def prod_diff_inputs():
     return [prod_a, prod_b, prod_c, prod_d]
 
 
-class TestTaxCaculator:
+class TestFetchInfo:
     #test fetch sum of correct str
     def test_fetch_sum(self, prod_inputs):
         sum = fetch_product_sum(prod_inputs[0])
