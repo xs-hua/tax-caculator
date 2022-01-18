@@ -1,6 +1,6 @@
 import pytest
 
-from lib.fetch_input import fetch_product_sum, fetch_is_prod_imported, fetch_prod_price
+from lib.fetch_input import fetch_product_sum, fetch_is_prod_imported, fetch_prod_price, fetch_prod_name
 
 #normal prod str
 @pytest.fixture
@@ -16,6 +16,17 @@ def prod_imported_inputs():
     prod_b = "5 imported music CD at 14.99"
     prod_c = "2 music CD at 14.99"
     return [prod_a, prod_b, prod_c]
+
+
+#input with different word combinations
+@pytest.fixture
+def prod_diff_inputs():
+    prod_a = "1 book at 12.49"
+    prod_b = "1 imported bottle of perfume at 47.50"
+    prod_c = "1 bottle of imported perfume at 47.50"
+    prod_d = "1 bottle of imported french perfume at 47.50"
+    return [prod_a, prod_b, prod_c, prod_d]
+
 
 class TestTaxCaculator:
     #test fetch sum of correct str
@@ -42,3 +53,16 @@ class TestTaxCaculator:
 
         price = fetch_prod_price(prod_inputs[1])
         assert price == 14.99
+
+    def test_fetch_prod_name(self, prod_diff_inputs):
+        name = fetch_prod_name(prod_diff_inputs[0])
+        assert name == "book"
+
+        name = fetch_prod_name(prod_diff_inputs[1])
+        assert name == "perfume"
+
+        name = fetch_prod_name(prod_diff_inputs[2])
+        assert name == "perfume"
+
+        name = fetch_prod_name(prod_diff_inputs[3])
+        assert name == "french perfume"
