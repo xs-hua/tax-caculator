@@ -2,11 +2,16 @@
 
 from lib.fetch_input import fetch_is_prod_imported, fetch_prod_name, fetch_prod_price
 
+
 TAX_FREE_CATE = ["book", "books", 
     "chocolate", "chocolates", 
     "pill", "pills"]
 
 def is_prod_tax_free(prod_name):
+    '''
+    :param str: product name
+    :return: if product is tax free
+    '''
     is_prod_tax_free = False
 
     prod_name_list = prod_name.split(" ")
@@ -20,6 +25,11 @@ def is_prod_tax_free(prod_name):
 
 
 def caculate_tax(input_str):
+    '''
+    :param str: product input
+    :return: caculate tax
+    '''
+
     add_tax = 1
     price = fetch_prod_price(input_str)
     #tax = 0
@@ -33,17 +43,22 @@ def caculate_tax(input_str):
     return [round(price*add_tax, 2), round(price*add_tax-price, 2)]
 
 def round_nr(nr):
+    '''
+    :param number: nr
+    :return: round number to 0.05
+    '''
     nr_str = str(int(nr*100))
     last_nr = nr_str[-1]
+    nr_obj = nr
 
     #round number to 0.05
     if int(last_nr) != 0 and int(last_nr) < 5:
         nr_str = list(nr_str)
         nr_str[-1] = '5'
-        nr = float("".join(nr_str)) / 100
-    
-    return nr
+        nr_obj = float("".join(nr_str)) / 100
 
-    
+    return nr_obj
+
+
     
 
