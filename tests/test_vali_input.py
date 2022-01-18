@@ -60,20 +60,24 @@ def prods():
 class TestInputValidation:
 
     #test validate prod name
+    @pytest.mark.validate_info
     def test_valid_prod_tax_free(self, prod_names):
         for name in prod_names:
             assert is_prod_tax_free(name[0]) == name[1]
-     
+
+    @pytest.mark.validate_info
     def test_tax_cacul(self, prod_taxes):
         for p in prod_taxes:
             result = caculate_tax(p[0])
             assert result[0] == p[1]
             assert result[1] == p[2]
     
+    @pytest.mark.validate_info
     def test_round_nr(self, unrounded_nrs):
         for nr in unrounded_nrs:
             assert round_nr(nr[0]) == nr[1]
-        
+
+    @pytest.mark.validate_info 
     def test_tax_cacul_and_round_nr(self, prods):
 
         for p in prods:
@@ -87,7 +91,8 @@ class TestInputValidation:
                 
             assert round(price_sum, 2) == p[1]
             assert round(price_sum - origin_price, 2) == p[2]
-            
+
+    @pytest.mark.validate_info     
     def test_excutor(self):
         executor = TaxCaculator()
         result = executor.tax_cacul_exec("1 book at 12.49")

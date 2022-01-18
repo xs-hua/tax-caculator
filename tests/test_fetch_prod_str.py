@@ -30,6 +30,7 @@ def prod_diff_inputs():
 
 class TestFetchInfo:
     #test fetch sum of correct str
+    @pytest.mark.fetch_info
     def test_fetch_sum(self, prod_inputs):
         sum = fetch_product_sum(prod_inputs[0])
         assert sum == 1
@@ -37,6 +38,7 @@ class TestFetchInfo:
         sum = fetch_product_sum(prod_inputs[1])
         assert sum == 5
     
+    @pytest.mark.fetch_info
     def test_fetch_prod_is_imported(self, prod_imported_inputs):
         is_imported = fetch_is_prod_imported(prod_imported_inputs[0])
         assert is_imported == True
@@ -47,6 +49,7 @@ class TestFetchInfo:
         is_imported = fetch_is_prod_imported(prod_imported_inputs[2])
         assert is_imported == False
 
+    @pytest.mark.fetch_info
     def test_fetch_prod_price(self, prod_inputs):
         price = fetch_prod_price(prod_inputs[0])
         assert price == 12.49
@@ -54,6 +57,7 @@ class TestFetchInfo:
         price = fetch_prod_price(prod_inputs[1])
         assert price == 14.99
 
+    @pytest.mark.fetch_info
     def test_fetch_prod_name(self, prod_diff_inputs):
         name = fetch_prod_name(prod_diff_inputs[0])
         assert name == "book"
