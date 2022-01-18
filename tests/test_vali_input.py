@@ -2,6 +2,7 @@ import pytest
 
 from lib.vali_input import is_prod_tax_free, caculate_tax, round_nr
 from lib.fetch_input import fetch_prod_price
+from lib.caculation_exec import TaxCaculator
 
 #normal prod name
 @pytest.fixture
@@ -83,7 +84,16 @@ class TestInputValidation:
                 origin_price += fetch_prod_price(item)
                 result = caculate_tax(item)
                 price_sum += round_nr(result[0])
-
+                
             assert round(price_sum, 2) == p[1]
             assert round(price_sum - origin_price, 2) == p[2]
             
+    def test_excutor(self):
+        executor = TaxCaculator()
+        result = executor.tax_cacul_exec("1 book at 12.49")
+        assert result[0] == 12.49
+        assert result[1] == 12.49
+
+        result = executor.tax_cacul_exec("1 imported box of chocolates at 10.00")
+        assert result[0] == 10.0
+        assert result[1] == 10.5
