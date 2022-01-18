@@ -24,7 +24,10 @@
 > #input empty line will terminate the app and print output
 ```
 
-2. Run test: `pytest` 
+2. Run test: 
+    - run all `pytest` 
+    - run testing fetch info from input part `pytest -m fetch_info`   
+    - run testing validate info from input part `pytest -m validate_info`
 
 ## Todo
 1. Update with more optimal approach for detect product category according to its name
