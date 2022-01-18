@@ -11,8 +11,13 @@ class TaxCaculator:
         caculate the price after tax
     '''
 
-    def tax_cacul_exec(str_input):
-        origin_price += fetch_prod_price(str_input)
-        price_after_tax = caculate_tax(str_input)
-
+    def tax_cacul_exec(self, str_input):
+        '''
+        : param str_input: product info input
+        :return: [original price of product, price after tax caculation]
+        '''
+        origin_price = fetch_prod_price(str_input)
+        price_after_tax = caculate_tax(str_input)[0] 
+        
+        
         return [origin_price, round_nr(price_after_tax)]
